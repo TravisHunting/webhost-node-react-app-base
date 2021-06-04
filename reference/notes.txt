@@ -65,3 +65,8 @@ Misc Notes:
 To resolve "Cannot GET /app/XXXX" change the urls in server.js to the full url
 The "proxy": "http://localhost:40351", line in the react package.json doesn't seem to have any effect on the built app.
     This would make that line purely for development purposes.
+
+To make the app persistent on your host, use a cron job.
+Set it to run every 15 min and use flock to determine whether it is already running.
+With this command, cron.lock will be generated automatically. (I think)
+    usr/bin/flock -n /tmp/cron.lock ${HOME}/nodejs/bin/node ${HOME}/app-base/server.js
